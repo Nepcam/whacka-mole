@@ -9,8 +9,9 @@ namespace whacka_mole
 {
     class Mole
     {
-        private int _x;
-        private int _y;
+        //private int _x;
+        //private int _y;
+        private Point _centre;
         private Color _moleColor;
         private const int SIZE = 50;
 
@@ -22,8 +23,9 @@ namespace whacka_mole
         /// <param name="moleColor">The colour of the mole</param>
         public Mole(int x, int y, Color moleColor)
         {
-            _x = x;
-            _y = y;
+            //_x = x;
+            //_y = y;
+            _centre = new Point(x, y);
             _moleColor = moleColor;
         }
 
@@ -33,7 +35,17 @@ namespace whacka_mole
         /// <returns>All the information as a neatly padded out string</returns>
         public override string ToString()
         {
-            return _x.ToString().PadRight(5) + _y.ToString().PadRight(5) + _moleColor.ToString();
+            return _centre.X.ToString().PadRight(5) + _centre.Y.ToString().PadRight(5) + _moleColor.ToString();
+        }
+
+        /// <summary>
+        /// Draws a mole centered around it's x and y position.
+        /// </summary>
+        /// <param name="paper">Where to draw the graphics</param>
+        public void DrawMole(Graphics paper)
+        {
+            SolidBrush br = new SolidBrush(_moleColor);
+            paper.FillRectangle(br, _centre.X - SIZE / 2, _centre.Y - SIZE / 2, SIZE, SIZE);
         }
     }
 }
